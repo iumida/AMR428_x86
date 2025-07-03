@@ -1,0 +1,7 @@
+<library path="amr_hardware">
+  <class name="amr_hardware/AmrSystem"
+         type="amr_hardware::AmrSystem"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>CAN-based hardware interface for AMR</description>
+  </class>
+</library>

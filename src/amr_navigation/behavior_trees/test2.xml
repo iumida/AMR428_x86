@@ -1,0 +1,19 @@
+<root main_tree_to_execute="NavigateToPose">
+  <BehaviorTree ID="NavigateToPose">
+    <PipelineSequence>
+
+      <!-- 1. 全局路径规划 -->
+      <ComputePathToPose goal="{goal}" path="{path}"/>
+
+      <!-- 2. 简单碰撞检测：检查规划出的 path 是否有效 -->
+      <IsPathValid path="{path}"/>
+
+      <!-- 4. 跟随路径 -->
+      <FollowPath path="{path}"/>
+
+      <!-- 5. 到达目标 -->
+      <GoalReached/>
+
+    </PipelineSequence>
+  </BehaviorTree>
+</root>

@@ -1,0 +1,8 @@
+<root main_tree_to_execute="NavigateThroughPoses">
+  <BehaviorTree ID="NavigateThroughPoses">
+    <Sequence name="Navigate Through Poses Sequence">
+      <ComputePathThroughPoses goals="{goals}" path="{path}"/>
+      <FollowPath path="{path}"/>
+    </Sequence>
+  </BehaviorTree>
+</root>
