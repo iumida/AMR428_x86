@@ -6,7 +6,7 @@
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://amr_description/meshes/ACE_BOT.stl"/>
+      <mesh filename="package://amr_description/meshes/ACE_BOT.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="base_color">
       <color rgba="0.42 0.45 0.42 1"/>
@@ -15,7 +15,7 @@
   <collision>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://amr_description/meshes/ACE_BOT.stl"/>
+      <mesh filename="package://amr_description/meshes/ACE_BOT.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
   <inertial>
