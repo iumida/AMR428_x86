@@ -3,29 +3,27 @@
 
   <!-- ------------------------------------------------ base  -->
   <link name="base_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://amr_description/meshes/ACE_BOT.stl"
-              scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="base_color">
-        <color rgba="0.42 0.45 0.42 1"/>
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://amr_description/meshes/ACE_BOT.stl"
-              scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1"/>
-      <inertia ixx="0.4" iyy="0.4" izz="0.4" ixy="0" ixz="0" iyz="0"/>
-    </inertial>
-  </link>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://amr_description/meshes/ACE_BOT.dae"/>
+    </geometry>
+    <material name="base_color">
+      <color rgba="0.42 0.45 0.42 1"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://amr_description/meshes/ACE_BOT.dae"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="1"/>
+    <inertia ixx="0.4" iyy="0.4" izz="0.4" ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+</link>
 
   <!-- ----------------------------- Livox sensor frame -->
   <link name="livox_frame">
