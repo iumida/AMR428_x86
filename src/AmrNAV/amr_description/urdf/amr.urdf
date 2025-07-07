@@ -6,7 +6,8 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://amr_description/meshes/ACE_BOT.dae"/>
+        <mesh filename="package://amr_description/meshes/ACE_BOT.stl"
+              scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="base_color">
         <color rgba="0.42 0.45 0.42 1"/>
@@ -15,7 +16,8 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://amr_description/meshes/ACE_BOT.dae"/>
+        <mesh filename="package://amr_description/meshes/ACE_BOT.stl"
+              scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -71,11 +73,16 @@
     <origin xyz="1.17 0 0.5" rpy="0 0 3.14159"/>
   </joint>
 
+
   <!-- ----------------------------- Camera Fork frame -->
   <link name="camera_fork"/>
   <joint name="base_link_to_camera_fork" type="fixed">
     <parent link="base_link"/>
     <child  link="camera_fork"/>
+    <!-- 
+      xyz = (-0.16, 0, 0.23)  
+      rpy = (roll, pitch, yaw) = (−π/2, 0, +π/2)
+    -->
     <origin xyz="-0.16 0 0.23" rpy="-1.5708 0 1.5708"/>
   </joint>
 
