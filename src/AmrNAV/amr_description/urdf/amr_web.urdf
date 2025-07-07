@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <robot name="amr">
 
-  <!-- ------------------------------------------------ base  -->
+  <!-- ----------------------------- base -->
   <link name="base_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://amr_description/meshes/ACE_BOT.dae"/>
+        <mesh filename="https://raw.githubusercontent.com/iumida/AMR428_Nav2/Humble/src/AmrNAV/amr_description/meshes/ACE_BOT.dae"/>
       </geometry>
       <material name="base_color">
         <color rgba="0.42 0.45 0.42 1"/>
@@ -15,7 +15,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://amr_description/meshes/ACE_BOT.dae"/>
+        <mesh filename="https://raw.githubusercontent.com/iumida/AMR428_Nav2/Humble/src/AmrNAV/amr_description/meshes/ACE_BOT.dae"/>
       </geometry>
     </collision>
     <inertial>
@@ -75,7 +75,7 @@
   <link name="camera_fork"/>
   <joint name="base_link_to_camera_fork" type="fixed">
     <parent link="base_link"/>
-    <child  link="camera_fork"/>
+    <child link="camera_fork"/>
     <origin xyz="-0.16 0 0.23" rpy="-1.5708 0 1.5708"/>
   </joint>
 
