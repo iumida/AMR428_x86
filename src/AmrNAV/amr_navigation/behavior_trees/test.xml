@@ -1,0 +1,60 @@
+<root BTCPP_format="4" main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+
+    <!-- 全域錯誤恢復層 -->
+    <RecoveryNode number_of_retries="3" name="NavigateRecovery">
+
+      <!-- 主導航流程 -->
+      <Sequence name="PlanOnceAndFollow">
+
+        <!-- 計算路徑（指定 planner plugin） -->
+        <ComputePathToPose
+          goal="{goal}"
+          path="{path}"
+          planner_id="GridBased"
+        />
+
+        <!-- 檢查路徑有效性 -->
+        <IsPathValid path="{path}"/>
+
+        <!-- 跟隨路徑，失敗時自動清 costmap 重試 -->
+        <RecoveryNode number_of_retries="1" name="FollowPathRecovery">
+
+          <!-- 跟隨路徑（指定 controller 與 goal checker） -->
+          <FollowPath
+            path="{path}"
+            controller_id="MPPI"
+            goal_checker_id="goal_checker"
+          />
+
+          <!-- 清 costmap 作為恢復 -->
+          <ClearEntireCostmap
+            name="ClearLocalCostmap-Context"
+            service_name="local_costmap/clear_entirely_local_costmap"
+          />
+
+        </RecoveryNode>
+
+      </Sequence>
+
+      <!-- 若導航整體失敗，額外恢復 -->
+      <ReactiveFallback name="RecoveryFallback">
+          
+        <!-- 目標是否更新 -->
+        <GoalUpdated/>
+
+        <!-- 恢復動作 -->
+        <RoundRobin name="RecoveryActions">
+          <ClearEntireCostmap
+            name="ClearLocalCostmap-Subtree"
+            service_name="local_costmap/clear_entirely_local_costmap"
+          />
+        </RoundRobin>
+          
+      </ReactiveFallback>
+
+    </RecoveryNode>
+
+  </BehaviorTree>
+</root>
+
