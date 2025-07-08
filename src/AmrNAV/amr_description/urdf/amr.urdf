@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <robot name="amr">
 
-  <!-- ------------------------------------------------ base  -->
   <link name="base_link">
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -25,7 +24,6 @@
   </inertial>
 </link>
 
-  <!-- ----------------------------- Livox sensor frame -->
   <link name="livox_frame">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
