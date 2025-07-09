@@ -5,6 +5,7 @@ docking_server:
     dock_approach_timeout: 30.0
     undock_linear_tolerance: 0.05
     undock_angular_tolerance: 0.1
+    dock_prestaging_tolerance: 0.7
     max_retries: 3
     base_frame: "base_link"
     fixed_frame: "odom"
@@ -19,8 +20,8 @@ docking_server:
       staging_x_offset: 1.0
       use_external_detection_pose: true
       use_battery_status: false   # 關閉電池狀態檢查，相當於 NonCharging 模式
-      external_detection_timeout: 1.0
-      external_detection_translation_x: -0.40
+      external_detection_timeout: 2.0
+      external_detection_translation_x: -0.38
       external_detection_translation_y: 0.0
       external_detection_rotation_roll: -1.57
       external_detection_rotation_pitch: -1.57
@@ -29,9 +30,10 @@ docking_server:
 
     controller:
       k_phi: 3.0
-      k_delta: 2.0
+      k_delta: 1.2
       v_linear_min: 0.4
       v_linear_max: 0.4
-      use_collision_detection: true
+      v_angular_max: 0.65
+      use_collision_detection: false
       dock_collision_threshold: 0.5
 
