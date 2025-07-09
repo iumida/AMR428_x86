@@ -32,8 +32,8 @@ def generate_launch_description():
         ),
         Node(
             package='laser_filters', executable='scan_to_scan_filter_chain',
-            name='scan_livox_filter', output='screen',
-            remappings=[('scan', '/scan_livox'), ('scan_filtered', '/scan_livox_filtered')],
+            name='scan_rear_filter', output='screen',
+            remappings=[('scan', '/scan_rear'), ('scan_filtered', '/scan_rear_filtered')],
             parameters=[scan_filter_chain]
         ),
 

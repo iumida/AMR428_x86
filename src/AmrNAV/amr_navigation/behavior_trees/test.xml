@@ -17,40 +17,42 @@
         <!-- 檢查路徑有效性 -->
         <IsPathValid path="{path}"/>
 
-        <!-- 跟隨路徑，失敗時自動清 costmap 重試 -->
+        <!-- 跟隨路徑：若失敗，進入 RecoveryNode 執行清 costmap -->
         <RecoveryNode number_of_retries="1" name="FollowPathRecovery">
 
-          <!-- 跟隨路徑（指定 controller 與 goal checker） -->
+          <!-- 嘗試跟隨路徑 -->
           <FollowPath
             path="{path}"
             controller_id="MPPI"
             goal_checker_id="goal_checker"
           />
 
-          <!-- 清 costmap 作為恢復 -->
-          <ClearEntireCostmap
-            name="ClearLocalCostmap-Context"
-            service_name="local_costmap/clear_entirely_local_costmap"
-          />
+          <!-- Recovery 子行為：清 costmap -->
+          <Sequence>
+            <ClearEntireCostmap
+              name="ClearLocalCostmap-OnFailure"
+              service_name="local_costmap/clear_entirely_local_costmap"
+            />
+          </Sequence>
 
         </RecoveryNode>
 
       </Sequence>
 
-      <!-- 若導航整體失敗，額外恢復 -->
+      <!-- 導航整體失敗時額外恢復 -->
       <ReactiveFallback name="RecoveryFallback">
-          
-        <!-- 目標是否更新 -->
+
+        <!-- 檢查是否已更新目標 -->
         <GoalUpdated/>
 
-        <!-- 恢復動作 -->
+        <!-- 額外 Recovery 動作 -->
         <RoundRobin name="RecoveryActions">
           <ClearEntireCostmap
             name="ClearLocalCostmap-Subtree"
             service_name="local_costmap/clear_entirely_local_costmap"
           />
         </RoundRobin>
-          
+
       </ReactiveFallback>
 
     </RecoveryNode>

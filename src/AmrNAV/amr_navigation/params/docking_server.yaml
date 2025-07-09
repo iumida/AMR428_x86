@@ -11,16 +11,16 @@ docking_server:
     odom_topic: "/odometry/filtered"
     dock_backwards: true
 
-    dock_database: /home/ace428/map/pallet_database.yaml
+    dock_database: /home/ace428/schedule/pallet_database.yaml
     dock_plugins: ['pallet_dock']
     pallet_dock:
       plugin: 'opennav_docking::SimpleChargingDock'
       docking_threshold: 0.05
-      staging_x_offset: -1.0
+      staging_x_offset: 1.0
       use_external_detection_pose: true
       use_battery_status: false   # 關閉電池狀態檢查，相當於 NonCharging 模式
       external_detection_timeout: 1.0
-      external_detection_translation_x: -0.35
+      external_detection_translation_x: -0.40
       external_detection_translation_y: 0.0
       external_detection_rotation_roll: -1.57
       external_detection_rotation_pitch: -1.57
@@ -30,8 +30,8 @@ docking_server:
     controller:
       k_phi: 3.0
       k_delta: 2.0
-      v_linear_min: 0.2
+      v_linear_min: 0.4
       v_linear_max: 0.4
-      use_collision_detection: false
+      use_collision_detection: true
       dock_collision_threshold: 0.5
 

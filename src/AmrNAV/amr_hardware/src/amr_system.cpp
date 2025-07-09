@@ -115,8 +115,8 @@ hardware_interface::return_type AmrSystem::write(const rclcpp::Time &, const rcl
     gear_tx.data[0] = 2;
   (void)::write(can_socket_, &gear_tx, sizeof(gear_tx));
 
-  constexpr double Kp_fwd = 12.0, Ki_fwd = 0.1, Kd_fwd = 0.0;
-  constexpr double Kp_rev = 20.0, Ki_rev = 0.2, Kd_rev = 0.0;
+  constexpr double Kp_fwd = 9.0, Ki_fwd = 0.0, Kd_fwd = 0.0;
+  constexpr double Kp_rev = 24.0, Ki_rev = 0.0, Kd_rev = 0.0;
   constexpr double dt = 0.05;
 
   double error = std::abs(rear_wheel_cmd_) - std::abs(measured_speed_);

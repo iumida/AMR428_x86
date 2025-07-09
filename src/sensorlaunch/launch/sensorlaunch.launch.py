@@ -81,12 +81,6 @@ def generate_launch_description():
             }.items()
         ),
 
-        # Xsens IMU
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                os.path.join(get_package_share_directory('xsens_mti_ros2_driver'), 'launch', 'xsens_mti_node.launch.py')
-            ])
-        ),
 
         # Mapping
         IncludeLaunchDescription(

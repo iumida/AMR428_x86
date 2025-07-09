@@ -69,6 +69,30 @@
     <origin xyz="1.17 0 0.5" rpy="0 0 3.14159"/>
   </joint>
 
+  <!-- ----------------------------- Rear LiDAR sensor frame -->
+  <link name="lidar_rear">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.05 0.05 0.05"/></geometry>
+      <material name="lidar_rear_color"><color rgba="0.0 0.8 0.0 1"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.05 0.05 0.05"/></geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="base_link_to_lidar_rear" type="fixed">
+    <parent link="base_link"/>
+    <child  link="lidar_rear"/>
+    <origin xyz="-0.4 0 0.63" rpy="0 0 0"/>
+  </joint>
+
 
   <!-- ----------------------------- Camera Fork frame -->
   <link name="camera_fork"/>
@@ -79,7 +103,7 @@
       xyz = (-0.16, 0, 0.23)  
       rpy = (roll, pitch, yaw) = (−π/2, 0, +π/2)
     -->
-    <origin xyz="-0.16 0 0.23" rpy="-1.5708 0 1.5708"/>
+    <origin xyz="-0.21 0 0.23" rpy="-1.5708 0 1.5708"/>
   </joint>
 
   <!-- ----------------------------- Simplified two-wheel bicycle model -->
