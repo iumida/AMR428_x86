@@ -1,0 +1,27 @@
+image_width: 1920
+image_height: 1080
+camera_name: camera_fork
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [1129.01607, 0.0, 933.144944,
+         0.0, 1126.16939, 529.959104,
+         0.0, 0.0, 1.0]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [0.07866811, -0.11859652, -0.00664882, 0.0002592, 0.05995278]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1.0, 0.0, 0.0,
+         0.0, 1.0, 0.0,
+         0.0, 0.0, 1.0]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [1129.01607, 0.0, 933.144944, 0.0,
+         0.0, 1126.16939, 529.959104, 0.0,
+         0.0, 0.0, 1.0, 0.0]
+

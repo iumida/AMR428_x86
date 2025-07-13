@@ -1,0 +1,31 @@
+/**:
+  ros__parameters:
+    video_device: "/dev/video0"
+    framerate: 30.0
+    io_method: "mmap"
+    frame_id: "camera_fork"
+    pixel_format: "mjpeg2rgb"
+    image_width: 1920
+    image_height: 1080
+    camera_name: "camera_fork"
+    # 改用了 package:// URI，指向 amr_launch/config 底下的 camera_info_fork.yaml
+    camera_info_url: "package://amr_launch/config/camera_info_fork.yaml"
+
+    brightness: 0                    # default=0
+    contrast: 0                      # default=0
+    saturation: 66                   # default=66
+    hue: 0                           # default=0
+
+    white_balance_automatic: true    # default=1
+    white_balance_temperature: 4600  # default=4600
+
+    gamma: 100                       # default=100
+    gain: 96                         # default=96
+    sharpness: 0                     # default=0
+    backlight_compensation: 0        # default=0
+
+    power_line_frequency: 2          # forced 60 Hz (default=1 is 50 Hz)
+
+    auto_exposure: 3                 # default=3 (automatic)
+    exposure_time_absolute: 156      # default=156 (inactive in auto mode)
+

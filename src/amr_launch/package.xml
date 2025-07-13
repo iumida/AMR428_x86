@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>amr_launch</name>
+  <version>0.0.1</version>
+  <description>Launch files and config for AMR system</description>
+  <maintainer email="iumida0918@gmail.com">ace428</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- 執行時相依套件 -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>rmw_cyclonedds_cpp</exec_depend>
+  <exec_depend>topic_tools</exec_depend>
+
+  <!-- ros2_control -->
+  <exec_depend>ros2_control</exec_depend>
+  <exec_depend>ros2_controllers</exec_depend>
+
+  <!-- Nav2 -->
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>navigation2</exec_depend>
+
+  <!-- AMR 本體 -->
+  <exec_depend>robot_state_publisher</exec_depend>
+
+  <!-- 雷射與導航感測 -->
+  <exec_depend>rplidar_ros</exec_depend>
+  <exec_depend>livox_ros_driver2</exec_depend>
+  <exec_depend>laser_filters</exec_depend>
+
+  <!-- 相機與影像處理 -->
+  <exec_depend>usb_cam</exec_depend>
+  <exec_depend>image_proc</exec_depend>
+
+  <!-- AprilTag 偵測 -->
+  <exec_depend>apriltag_ros</exec_depend>
+
+  <!-- Foxglove Bridge 可視化 -->
+  <exec_depend>foxglove_bridge</exec_depend>
+
+  <!-- 測試 -->
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
+
