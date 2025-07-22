@@ -30,7 +30,6 @@ def generate_launch_description():
             package='rtabmap_odom',
             executable='icp_odometry',
             output='screen',
-            arguments=['--ros-args', '--log-level', 'warn'],  # <-- 加在這裡
             parameters=[{
               'frame_id':                     'base_link',
               'odom_frame_id':                'odom',
@@ -76,14 +75,13 @@ def generate_launch_description():
 
         Node(
             package='rtabmap_slam', executable='rtabmap', output='screen',
-            arguments=['--ros-args', '--log-level', 'warn'], 
             parameters=[{
                 'frame_id':                  'base_link',
                 'subscribe_depth':           False,
-                'subscribe_rgb':             False,
+                'subscribe_rgb':             True,
                 'subscribe_scan_cloud':      True,
                 'subscribe_scan':            False,
-                'approx_sync':               False,
+                'approx_sync':               True,
                 'wait_for_transform':        0.2,
                 'use_sim_time':              use_sim_time,
                 'database_path':             database_path,
@@ -95,7 +93,7 @@ def generate_launch_description():
                 'Mem/NotLinkedNodesKept':    'false',
                 'Mem/STMSize':               '30',
                 'Mem/LaserScanNormalK':      '20',
-                'Reg/Strategy':              '1',
+                'Reg/Strategy':              '2',
                 'Icp/VoxelSize':             '0.1',
                 'Icp/PointToPlaneK':         '20',
                 'Icp/PointToPlaneRadius':    '0',
@@ -107,13 +105,16 @@ def generate_launch_description():
                 'Icp/Strategy':              '1',
                 'Icp/OutlierRatio':          '0.7',
                 'Grid/Sensor':               '0',
-                'Kp/MaxFeatures':            '-1',
-                'Icp/CorrespondenceRatio':   '0.2',
+                'Kp/MaxFeatures':            '0',
+                'Icp/CorrespondenceRatio':   '0.2'
             }],
             remappings=[
                 ('scan_cloud', 'assembled_cloud'),
-                ('tag_detections', '/none')
+                ('tag_detections', '/none'),
+                ('rgb/image',  '/camera_fork/image_rect'),
+                ('rgb/camera_info',  '/camera_fork/camera_info')
             ]
         ),
     ])
+
 

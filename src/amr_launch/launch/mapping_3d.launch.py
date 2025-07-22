@@ -6,7 +6,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time')
-    deskewing = LaunchConfiguration('deskewing')
+    deskewing    = LaunchConfiguration('deskewing')
     
     return LaunchDescription([
 
@@ -63,13 +63,13 @@ def generate_launch_description():
             parameters=[{
               'frame_id':'base_link',
               'subscribe_depth':False,
-              'subscribe_rgb':False,
+              'subscribe_rgb':True,
               'subscribe_scan_cloud':True,
-              'approx_sync':False,
+              'approx_sync':True,
               'map_always_update':False,
               'wait_for_transform':0.2,
               'use_sim_time':use_sim_time,
-              'database_path':'/home/ace428/map/rtabmap.db',  # 正確設定存檔位置
+              'database_path':'/home/ace428/map/rtabmap.db',
               'RGBD/ProximityMaxGraphDepth': '0',
               'RGBD/ProximityPathMaxNeighbors': '1',
               'RGBD/AngularUpdate': '0.05',
@@ -78,7 +78,7 @@ def generate_launch_description():
               'Mem/NotLinkedNodesKept': 'false',
               'Mem/STMSize': '30',
               'Mem/LaserScanNormalK': '20',
-              'Reg/Strategy': '1',
+              'Reg/Strategy': '2',
               'Icp/VoxelSize': '0.1',
               'Icp/PointToPlaneK': '20',
               'Icp/PointToPlaneRadius': '0',
@@ -90,14 +90,38 @@ def generate_launch_description():
               'Icp/Strategy': '1',
               'Icp/OutlierRatio': '0.7',
               'Icp/CorrespondenceRatio': '0.2',
-              'Grid/MaxObstacleHeight': '2.5',
+              'Grid/MaxObstacleHeight': '1.6',
               'Grid/RayTracing': 'true',
+              'Grid/RangeMax': '5.0'
             }],
             remappings=[
-              ('scan_cloud', 'assembled_cloud')
+              ('scan_cloud', 'assembled_cloud'),
+              ('rgb/image',  '/camera_fork/image_rect'),
+              ('rgb/camera_info',  '/camera_fork/camera_info_rect')
             ],
-             arguments=['-d']
-             )
-            
+            arguments=['-d']
+        ),
+
+        # 4) RTAB-Map Viz (GUI) 節點
+        Node(
+            package='rtabmap_viz',
+            executable='rtabmap_viz',
+            name='rtabmap_viz',
+            output='screen',
+            parameters=[{
+                'subscribe_rgb':        True,
+                'subscribe_scan_cloud': True,
+                'approx_sync':          True,
+                'use_sim_time':         use_sim_time,
+            }],
+            remappings=[
+                ('rgb/image',        '/camera_fork/image_rect'),
+                ('rgb/camera_info',  '/camera_fork/camera_info'),
+                ('scan_cloud',       'assembled_cloud'),
+                ('odom',             '/odom'),
+            ]
+        ),
+
     ])
+
 

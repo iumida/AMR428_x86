@@ -41,8 +41,8 @@ behavior_server:
 bt_navigator:
   ros__parameters:
     use_sim_time: false
-    default_nav_to_pose_bt_xml: "/home/ace428/amr/src/AmrNAV/amr_navigation/behavior_trees/amr_nav_to_pose_bt.xml"
-    default_nav_through_poses_bt_xml: "/home/ace428/amr/src/AmrNAV/amr_navigation/behavior_trees/amr_nav_to_pose_bt.xml"
+    default_nav_to_pose_bt_xml: "/home/ace428/amr/src/amr_navigation/behavior_trees/amr_nav_to_pose_bt.xml"
+    default_nav_through_poses_bt_xml: "/home/ace428/amr/src/amr_navigation/behavior_trees/amr_nav_to_pose_bt.xml"
     global_frame: "map"
     robot_base_frame: "base_link"
     odom_topic: "/odometry/filtered"
@@ -62,6 +62,10 @@ bt_navigator:
       plugin: "nav2_bt_navigator::NavigateThroughPosesNavigator"
       enable_groot_monitoring: false
       groot_server_port: 1669
+
+    error_code_names:
+      - compute_path_error_code
+      - follow_path_error_code
 
 collision_monitor:
   ros__parameters:
@@ -241,6 +245,13 @@ global_costmap:
       track_unknown_space: true
       service_introspection_mode: "disabled"
       plugins: ["static_layer", "obstacle_layer", "denoise_layer", "inflation_layer"]
+      filters: ["keepout_filter"]
+
+      keepout_filter:
+        plugin: "nav2_costmap_2d::KeepoutFilter"
+        enabled: true
+        filter_info_topic: "/costmap_filter_info"
+
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_topic: "/map"
@@ -310,7 +321,7 @@ lifecycle_manager_navigation:
   ros__parameters:
     use_sim_time: false
     autostart: true
-    node_names: ['controller_server', 'planner_server', 'behavior_server', 'bt_navigator', 'waypoint_follower', 'collision_monitor', 'docking_server']
+    node_names: ['controller_server', 'planner_server', 'behavior_server', 'bt_navigator', 'waypoint_follower', 'collision_monitor', 'docking_server' , 'filter_mask_server',  'costmap_filter_info_server']
 
 local_costmap:
   local_costmap:
@@ -329,6 +340,12 @@ local_costmap:
       service_introspection_mode: "disabled"
       footprint_padding: 0.01
       plugins: ["static_layer", "obstacle_layer", "denoise_layer", "inflation_layer"]
+      filters: ["keepout_filter"]
+
+      keepout_filter:
+        plugin: "nav2_costmap_2d::KeepoutFilter"
+        enabled: true
+        filter_info_topic: "/costmap_filter_info"
 
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
