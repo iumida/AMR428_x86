@@ -47,7 +47,7 @@ def generate_launch_description():
         executable='relay',
         arguments=[
             '/cmd_vel_final',
-            '/bicycle_steering_controller/reference_unstamped'
+            '/bicycle_steering_controller/reference'
         ],
         output='screen',
     )
